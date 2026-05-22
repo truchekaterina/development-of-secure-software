@@ -29,7 +29,8 @@
 
 В `.gitignore` корня: только `Done/how_to_do/`, `.cursor/`, `.env`.
 
-## GitLab
+## Удалённые репозитории
 
-- **Juice Shop (CI, код):** https://gitlab.com/Agent_Kate/juice-shop-lab  
+- **Портфолио курса (GitHub):** https://github.com/truchekaterina/development-of-secure-software  
+- **Juice Shop CI/код (GitLab):** https://gitlab.com/Agent_Kate/juice-shop-lab  
 - **Курс (архив):** http://10.0.0.10/root/juice-shop-lab
