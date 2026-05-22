@@ -1,0 +1,10 @@
+rules:
+  - id: eval-detected
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Использование eval() — риск внедрения кода (CWE-94).
+    pattern: eval(...)
+    metadata:
+      cwe: "CWE-94: Improper Control of Generation of Code"
+      owasp: "A05:2025 Injection"
+      category: security

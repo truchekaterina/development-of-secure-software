@@ -1,0 +1,80 @@
+# App
+node_modules/
+juiceshop.sqlite
+order_*.pdf
+app/
+!frontend/src/app
+uploads/complaints/*.*
+!uploads/complaints/.gitkeep
+ftp/legal.md
+# Lab 4 SCA: lock files required for npm audit / Trivy in CI (generated locally with --ignore-scripts)
+# package-lock.json — tracked intentionally (removed from ignore)
+i18n/*.json
+i18n/*.invalid
+!frontend/src/assets/i18n/*.json
+!data/static/i18n/*.json
+data/chatbot/*.*
+!data/chatbot/.gitkeep
+/data/juiceshop.sqlite-journal
+
+# Build
+.nyc_output/
+.sass-cache/
+build/
+# Lab 6: patched route handlers for CI overlay image (lab6/Dockerfile.patched)
+!build/routes/
+!build/routes/search.js
+!build/routes/basket.js
+cache/
+dist/
+logs/
+vagrant/.vagrant/
+*.orig
+*.out
+*.log
+JSON
+JSON.map
+frontend/src/**/*.js
+/bom.json
+/bom.xml
+# Lab 4 SCA — generated locally or in CI; do not commit
+/sbom.cdx.json
+/sbom-image.cdx.json
+/npm-audit.json
+.sca_commit
+
+# IDEs
+.idea/
+.vscode/
+out/
+*.eml
+*.iml
+*.iws
+*.swp
+
+# Branch ghpages
+assets/
+!frontend/src/assets/
+
+# Custom configuration files
+config/*.yml
+!config/addo.yml
+!config/bodgeit.yml
+!config/ctf.yml
+!config/fbctf.yml
+!config/default.yml
+!config/juicebox.yml
+!config/quiet.yml
+!config/test.yml
+!config/7ms.yml
+!config/mozilla.yml
+!config/unsafe.yml
+!config/tutorial.yml
+!config/oss.yml
+
+# System Files
+.DS_Store
+# Lab 7: demo / local secrets — never commit
+lab7-secrets-demo.txt
+ctf.key
+

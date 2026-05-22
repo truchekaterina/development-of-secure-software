@@ -1,0 +1,23 @@
+# Зависимости и артефакты
+node_modules/
+frontend/node_modules/
+build/
+dist/
+coverage/
+.git/
+
+# Тесты и учебные фрагменты (FP для production-контекста)
+test/
+cypress/
+data/static/codefixes/
+
+# Сторонние минифицированные библиотеки
+**/*.min.js
+frontend/src/assets/private/
+
+# Прочее
+uploads/
+screenshots/
+vagrant/
+semgrep/reports/*.json
+semgrep/reports/*.sarif

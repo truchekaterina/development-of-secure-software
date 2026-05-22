@@ -1,0 +1,5 @@
+# Lab 6 — fast local image: official Juice Shop + patched route handlers only.
+# Requires: build/routes/search.js and build/routes/basket.js compiled from patched sources.
+FROM bkimminich/juice-shop:v17.0.0
+COPY build/routes/search.js build/routes/search.js
+COPY build/routes/basket.js build/routes/basket.js

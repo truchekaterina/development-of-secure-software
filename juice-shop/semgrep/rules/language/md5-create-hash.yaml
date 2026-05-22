@@ -1,0 +1,9 @@
+rules:
+  - id: md5-create-hash
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: MD5 не предназначен для хранения паролей (CWE-328). Используйте bcrypt/argon2.
+    pattern: crypto.createHash('md5')
+    metadata:
+      cwe: "CWE-328: Use of Weak Hash"
+      owasp: "A04:2025 Cryptographic Failures"

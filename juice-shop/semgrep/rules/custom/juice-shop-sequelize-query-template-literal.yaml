@@ -1,0 +1,16 @@
+rules:
+  - id: juice-shop-sequelize-query-template-literal
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >
+      Пользовательские данные попадают в SQL через sequelize.query и шаблонную
+      строку (риск SQL Injection в OWASP Juice Shop). Используйте replacements /
+      параметризацию Sequelize.
+    pattern-either:
+      - pattern: models.sequelize.query(`...${$X}...`)
+      - pattern: sequelize.query(`...${$X}...`)
+    metadata:
+      category: security
+      cwe: "CWE-89: SQL Injection"
+      owasp: "A05:2025 Injection"
+      technology: [sequelize, express, juice-shop]

@@ -1,0 +1,38 @@
+# Lab 7 — OWASP Juice Shop secret scanning policy
+title = "Juice Shop Lab 7"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "juice-shop-rsa-private-key"
+description = "RSA private key in source (JWT signing)"
+regex = '''-----BEGIN (RSA )?PRIVATE KEY-----'''
+keywords = ["BEGIN RSA PRIVATE KEY", "BEGIN PRIVATE KEY"]
+
+[[rules]]
+id = "juice-shop-totp-secret"
+description = "TOTP/2FA secret in user YAML"
+regex = '''(?i)totpSecret:\s*['"]?[A-Z2-7]{16,}'''
+keywords = ["totpSecret"]
+
+[[rules]]
+id = "juice-shop-jwt-env"
+description = "JWT signing secret in config or env-style assignment"
+regex = '''(?i)(jwt[_-]?secret)\s*[:=]\s*['"]?[A-Za-z0-9+/=_-]{16,}'''
+keywords = ["jwt_secret", "JWT_SECRET"]
+
+[[rules]]
+id = "juice-shop-oauth-client-id"
+description = "Google OAuth clientId in Juice Shop config"
+regex = '''(?i)clientId:\s*['"]?\d{12}-[a-z0-9]+\.apps\.googleusercontent\.com'''
+keywords = ["clientId", "googleOauth"]
+
+# Known OWASP CTF secrets — not new leaks; document in lab report
+[allowlist]
+paths = [
+  '''lib/insecurity\.ts''',
+  '''data/static/users\.yml''',
+  '''encryptionkeys/''',
+  '''config/default\.yml''',
+]

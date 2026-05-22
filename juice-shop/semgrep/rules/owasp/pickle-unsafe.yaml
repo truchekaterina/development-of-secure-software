@@ -1,0 +1,11 @@
+rules:
+  - id: vm-run-insecure
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: vm.runInContext/runInNewContext с недоверенным кодом — риск RCE (CWE-94).
+    pattern-either:
+      - pattern: vm.runInContext($CODE, ...)
+      - pattern: vm.runInNewContext($CODE, ...)
+    metadata:
+      cwe: "CWE-94: Code Injection"
+      owasp: "A05:2025 Injection"

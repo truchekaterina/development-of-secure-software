@@ -1,0 +1,7 @@
+# Lab 7 — local secret scanning (Gitleaks)
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.4
+    hooks:
+      - id: gitleaks
+        args: [--config, .gitleaks.toml, --redact]

@@ -1,0 +1,11 @@
+rules:
+  - id: path-traversal-fs-read
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: fs.readFile/readFileSync с переменным путём — риск path traversal (CWE-22).
+    pattern-either:
+      - pattern: fs.readFile($PATH, ...)
+      - pattern: fs.readFileSync($PATH, ...)
+    metadata:
+      cwe: "CWE-22: Path Traversal"
+      owasp: "A01:2025 Broken Access Control"

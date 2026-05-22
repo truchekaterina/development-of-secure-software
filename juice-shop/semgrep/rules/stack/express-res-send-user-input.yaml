@@ -1,0 +1,9 @@
+rules:
+  - id: express-res-send-with-request
+    languages: [javascript, typescript]
+    severity: INFO
+    message: res.send с данными из запроса — проверьте XSS/инъекции.
+    pattern: res.send(req.$FIELD)
+    metadata:
+      technology: [express]
+      owasp: "A05:2025 Injection"

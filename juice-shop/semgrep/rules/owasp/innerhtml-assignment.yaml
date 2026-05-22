@@ -1,0 +1,9 @@
+rules:
+  - id: dom-innerhtml-assignment
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: Присвоение innerHTML — риск XSS (CWE-79).
+    pattern: $EL.innerHTML = $X
+    metadata:
+      cwe: "CWE-79: Cross-site Scripting"
+      owasp: "A05:2025 Injection"

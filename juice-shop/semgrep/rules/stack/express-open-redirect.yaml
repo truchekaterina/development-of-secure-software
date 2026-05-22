@@ -1,0 +1,9 @@
+rules:
+  - id: express-open-redirect
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: res.redirect с пользовательским вводом — open redirect (CWE-601).
+    pattern: res.redirect(req.$X)
+    metadata:
+      technology: [express]
+      cwe: "CWE-601: URL Redirection to Untrusted Site"

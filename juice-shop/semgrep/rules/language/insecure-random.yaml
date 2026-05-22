@@ -1,0 +1,9 @@
+rules:
+  - id: insecure-random-math-random
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: Math.random() не криптографически стойкий (CWE-330).
+    pattern: Math.random()
+    metadata:
+      cwe: "CWE-330: Use of Insufficiently Random Values"
+      owasp: "A04:2025 Cryptographic Failures"

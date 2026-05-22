@@ -1,0 +1,19 @@
+# Головной конфиг Semgrep 1.95.0 (OWASP Juice Shop — лаб. №5)
+#
+# В Semgrep 1.95.0 директива rules/include для *.yaml в одном файле не поддерживается.
+# Эквивалентная сборка правил — четыре локальных каталога (16 rule-id):
+#
+#   semgrep scan \
+#     --config semgrep/rules/language \
+#     --config semgrep/rules/owasp \
+#     --config semgrep/rules/stack \
+#     --config semgrep/rules/custom \
+#     ...
+#
+# См. также: semgrep/scan-local.ps1
+
+configs:
+  - rules/language
+  - rules/owasp
+  - rules/stack
+  - rules/custom

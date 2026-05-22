@@ -1,0 +1,11 @@
+rules:
+  - id: child-process-shell-exec
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Вызов child_process с shell=true или exec — риск command injection (CWE-78).
+    pattern-either:
+      - pattern: child_process.exec($CMD, ...)
+      - pattern: require('child_process').exec($CMD, ...)
+    metadata:
+      cwe: "CWE-78: OS Command Injection"
+      owasp: "A05:2025 Injection"

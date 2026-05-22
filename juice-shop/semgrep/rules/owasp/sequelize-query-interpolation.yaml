@@ -1,0 +1,11 @@
+rules:
+  - id: sequelize-query-template-interpolation
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: SQL Injection — интерполяция в sequelize.query (CWE-89).
+    pattern-either:
+      - pattern: sequelize.query(`...${$X}...`)
+      - pattern: models.sequelize.query(`...${$X}...`)
+    metadata:
+      cwe: "CWE-89: SQL Injection"
+      owasp: "A05:2025 Injection"

@@ -1,0 +1,11 @@
+rules:
+  - id: sequelize-raw-query-call
+    languages: [javascript, typescript]
+    severity: INFO
+    message: Вызов sequelize.query — убедитесь в параметризации (Sequelize/Express stack).
+    pattern-either:
+      - pattern: sequelize.query(...)
+      - pattern: models.sequelize.query(...)
+    metadata:
+      technology: [sequelize, express]
+      cwe: "CWE-89"

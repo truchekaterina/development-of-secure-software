@@ -1,0 +1,9 @@
+rules:
+  - id: jwt-decode-without-verify
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: jwt.decode без проверки подписи — риск подделки токена (CWE-347).
+    pattern: jwt.decode($TOKEN, ...)
+    metadata:
+      cwe: "CWE-347: Improper Verification of Cryptographic Signature"
+      owasp: "A07:2025 Authentication Failures"

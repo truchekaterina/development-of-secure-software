@@ -1,0 +1,13 @@
+rules:
+  - id: angular-bypass-security-trust
+    languages: [typescript, javascript]
+    severity: WARNING
+    message: bypassSecurityTrustHtml/Url — обход санитизации Angular (XSS).
+    pattern-either:
+      - pattern: bypassSecurityTrustHtml(...)
+      - pattern: bypassSecurityTrustUrl(...)
+      - pattern: bypassSecurityTrustResourceUrl(...)
+    metadata:
+      technology: [angular]
+      cwe: "CWE-79"
+      owasp: "A05:2025 Injection"

@@ -1,0 +1,12 @@
+# Только по запросу — остальное в репозитории
+Done/how_to_do/
+.cursor/
+
+# Секреты и локальные env
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Резервная копия .git juice-shop (не коммитить)
+juice-shop/.juice-shop-standalone-git/

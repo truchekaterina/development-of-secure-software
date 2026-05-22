@@ -1,0 +1,10 @@
+rules:
+  - id: jwt-algorithm-none
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: JWT с algorithm none — критическая уязвимость аутентификации.
+    pattern-regex: algorithm.*none|algorithms.*none
+    metadata:
+      technology: [jsonwebtoken]
+      cwe: "CWE-347"
+      owasp: "A07:2025 Authentication Failures"
